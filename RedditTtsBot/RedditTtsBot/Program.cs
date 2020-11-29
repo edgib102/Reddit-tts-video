@@ -1,5 +1,7 @@
 ﻿using System;
 using RedditTtsBot.General;
+using RedditTtsBot.Gui;
+
 namespace RedditTtsBot
 {
     class Program
@@ -9,7 +11,12 @@ namespace RedditTtsBot
         {
             Console.WriteLine("------------------------Program Start------------------------\n");
 
-            var Options = Gui.BaseUi.ui();
+            ConfigProvider.GetGeneralConfig(); // checks and creates confing on startup
+            ConfigProvider.GetRedditConfig(); // checks and creates confing on startup
+            Console.WriteLine(string.Empty);
+           // var Options = BaseUi.ui();
+            RedditUi.GetPost();
+            
 
 
 

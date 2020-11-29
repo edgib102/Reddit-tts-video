@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Newtonsoft.Json;
+using RedditTtsBot.General.General_classes.Config;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,36 +10,64 @@ namespace RedditTtsBot.General
 {
     public static class ConfigProvider
     {
-        private static FileInfo configFile = new FileInfo("config.json");
+        
 
-        public static IConfig GetConfig()
+        private static FileInfo generalConfigFile = new FileInfo("generalconfig.json");
+        private static FileInfo redditConfigFile = new FileInfo("redditconfig.json");
+
+        public static IGeneralConfig GetGeneralConfig()
         {
-            Uri DefaultUri = new Uri("https://www.thespruceeats.com/can-i-freeze-cheese-1327672");
+            Uri DefaultUri = new Uri("https://www.thespruceeats.com/can-i-freeze-cheese-1327672"); //dummy uri
             //default file path as well
 
-            IConfig config = new Config(configFile.FullName, DefaultUri);
+            IGeneralConfig GConfig = new GeneralConfig(generalConfigFile.FullName, DefaultUri);
 
             try
             {
-                config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(configFile.FullName));
+                GConfig = JsonConvert.DeserializeObject<GeneralConfig>(File.ReadAllText(generalConfigFile.FullName));
             }
             catch
             {
-                GenerateNewConfig(config);
+                GenerateNewGeneralConfig(GConfig);
                 
             }
 
-            return config;
+            return GConfig;
         }
 
-        private static void GenerateNewConfig(IConfig config)
+        public static IRedditConfig GetRedditConfig()
         {
-            var configJson = JsonConvert.SerializeObject(config);
-            Console.WriteLine("Creating config.json");
-            configFile.Delete();
-            File.WriteAllText(configFile.FullName, configJson);
-            configFile = new FileInfo(configFile.FullName);
+            IRedditConfig RConfig = new RedditConfig("App id goes here", "Refresh token goes here", "Client secret goes here");
+
+            try
+            {
+                RConfig = JsonConvert.DeserializeObject<RedditConfig>(File.ReadAllText(redditConfigFile.FullName));
+
+            }
+            catch
+            {
+                GenerateNewRedditConfig(RConfig);
+            }
+
+            return RConfig;
         }
 
+        private static void GenerateNewGeneralConfig(IGeneralConfig GConfig)
+        {
+            var configJson = JsonConvert.SerializeObject(GConfig);
+            Console.WriteLine("Creating config.json");
+            generalConfigFile.Delete();
+            File.WriteAllText(generalConfigFile.FullName, configJson);
+            generalConfigFile = new FileInfo(generalConfigFile.FullName);
+        }
+
+        private static void GenerateNewRedditConfig(IRedditConfig RConfig)
+        {
+            var configJson = JsonConvert.SerializeObject(RConfig);
+            Console.WriteLine("Creating redditconfig.json");
+            redditConfigFile.Delete();
+            File.WriteAllText(redditConfigFile.FullName, configJson);
+            redditConfigFile = new FileInfo(redditConfigFile.FullName);
+        }
     }
 }

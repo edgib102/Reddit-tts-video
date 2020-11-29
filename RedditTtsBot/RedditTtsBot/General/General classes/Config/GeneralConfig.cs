@@ -1,18 +1,15 @@
 ﻿using System;
-using System.IO;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Text;
 
-namespace RedditTtsBot.General
+namespace RedditTtsBot.General.General_classes.Config
 {
-    public interface IConfig
+    public interface IGeneralConfig
     {
         Uri DefaultUri { get; set; }
-        string DefualtOutputPath { get; set; }
+        string DefualtOutputPath { get; set; }  
     }
 
-    public class Config : IConfig
+    public class GeneralConfig : IGeneralConfig
     {
         [JsonProperty("defaultUri")]
         public Uri DefaultUri { get; set; }
@@ -20,7 +17,7 @@ namespace RedditTtsBot.General
         [JsonProperty("defualtoutputPath")]
         public string DefualtOutputPath { get; set; }
 
-        public Config(string defualtoutputPath, Uri defaultUri)
+        public GeneralConfig(string defualtoutputPath, Uri defaultUri)
         {
             DefaultUri = defaultUri;
             DefualtOutputPath = defualtoutputPath;

@@ -6,16 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Ui\depths\" />
+    <Folder Include="Gui\Variable Classes\" />
     <Folder Include="Video\" />
     <Folder Include="Youtube\" />
     <Folder Include="Thumbnail\" />
-    <Folder Include="Reddit\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FFMpegCore" Version="3.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Reddit" Version="1.4.0" />
   </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ namespace RedditTtsBot.Gui
         {
             Uri Url = null;
             DirectoryInfo OutputPath = null;
-            var config = ConfigProvider.GetConfig();
+            var config = ConfigProvider.GetGeneralConfig();
 
             Url = GetUri(); //could make method but i advise you to move on (sunken cost fallacy)
             Console.WriteLine($"Url is: {Url}");
