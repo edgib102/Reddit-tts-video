@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Collections.Generic;
 using RedditTtsBot.General;
-using RedditTtsBot.Gui;
+using RedditTtsBot.Reddit;
 
 namespace RedditTtsBot
 {
@@ -11,12 +13,20 @@ namespace RedditTtsBot
         {
             Console.WriteLine("------------------------Program Start------------------------\n");
 
-            ConfigProvider.GetGeneralConfig(); // checks and creates confing on startup
-            ConfigProvider.GetRedditConfig(); // checks and creates confing on startup
+            ConfigProvider.GetGeneralConfig();
+            ConfigProvider.GetRedditConfig();
+            // checks and creates confing on startup
+
+            var generalconfig = ConfigProvider.GetGeneralConfig();
             Console.WriteLine(string.Empty);
             //var Options = BaseUi.ui();
-            RedditUi.GetPost();
-            
+
+            #region Create stuff
+            List<List<DirectoryInfo>> ParentDirList = new List<List<DirectoryInfo>>();
+            ParentDirList.Add(CreateFolder.DirectoryCreate(generalconfig.DefualtOutputPath));
+            RedditClass.getpost(ParentDirList[0]);
+            #endregion
+
 
 
 

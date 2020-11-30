@@ -11,7 +11,7 @@ namespace RedditTtsBot.Reddit
 {
     public class RedditClass
     {
-        public static void getpost()
+        public static void getpost(List<DirectoryInfo> DirList)
         {
             var RedditConfig = ConfigProvider.GetRedditConfig();
             var GeneralConfig = ConfigProvider.GetGeneralConfig();
@@ -23,10 +23,6 @@ namespace RedditTtsBot.Reddit
             Console.WriteLine($"App Id: {RedditConfig.AppId}\nRefresh Token: {RedditConfig.RefreshToken}\nClient Secret: {RedditConfig.ClientSecret}");
 
             #region
-
-            //StreamWriter TxtOutput = new StreamWriter(GeneralConfig.DefualtOutputPath + @"\TestTxt.txt", append: true);
-            
-            //TxtOutput.WriteLine("test");
             
 
             Console.WriteLine("\nGetting post index...");
@@ -81,7 +77,7 @@ namespace RedditTtsBot.Reddit
 
             void WriteToFile(List<string> comments)
             {
-                File.WriteAllLines(GeneralConfig.DefualtOutputPath + @"\TestTxt.txt", comments);
+                File.WriteAllLines(DirList[1].FullName + @"\TestTxt.txt", comments);
             }
         }
     }

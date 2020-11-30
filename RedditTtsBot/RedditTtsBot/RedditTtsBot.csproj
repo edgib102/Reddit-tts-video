@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <Folder Include="Gui\Variable Classes\" />
-    <Folder Include="Video\" />
+    <Folder Include="Reddit\" />
     <Folder Include="Youtube\" />
     <Folder Include="Thumbnail\" />
   </ItemGroup>
