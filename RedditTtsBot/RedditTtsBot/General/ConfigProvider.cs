@@ -1,16 +1,14 @@
-﻿using System;
-using System.IO;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using RedditTtsBot.General.General_classes.Config;
-using System.Collections.Generic;
-using System.Text;
+using System;
+using System.IO;
 
 
 namespace RedditTtsBot.General
 {
     public static class ConfigProvider
     {
-        
+
 
         private static FileInfo generalConfigFile = new FileInfo("generalconfig.json");
         private static FileInfo redditConfigFile = new FileInfo("redditconfig.json");
@@ -18,18 +16,20 @@ namespace RedditTtsBot.General
         public static IGeneralConfig GetGeneralConfig()
         {
             Uri DefaultUri = new Uri("https://www.thespruceeats.com/can-i-freeze-cheese-1327672"); //dummy uri
-            //default file path as well
+            string DefaultOutputPath = "File Path goes here";
 
-            IGeneralConfig GConfig = new GeneralConfig(generalConfigFile.FullName, DefaultUri);
+
+
+            IGeneralConfig GConfig = new GeneralConfigClass(DefaultOutputPath, DefaultUri);
 
             try
             {
-                GConfig = JsonConvert.DeserializeObject<GeneralConfig>(File.ReadAllText(generalConfigFile.FullName));
+                GConfig = JsonConvert.DeserializeObject<GeneralConfigClass>(File.ReadAllText(generalConfigFile.FullName));
             }
             catch
             {
                 GenerateNewGeneralConfig(GConfig);
-                
+
             }
 
             return GConfig;
@@ -42,7 +42,7 @@ namespace RedditTtsBot.General
             try
             {
                 RConfig = JsonConvert.DeserializeObject<RedditConfig>(File.ReadAllText(redditConfigFile.FullName));
-                
+
             }
             catch (Exception e)
             {

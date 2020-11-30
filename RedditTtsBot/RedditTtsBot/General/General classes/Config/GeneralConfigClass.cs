@@ -7,9 +7,10 @@ namespace RedditTtsBot.General.General_classes.Config
     {
         Uri DefaultUri { get; set; }
         string DefualtOutputPath { get; set; }  
+        
     }
-
-    public class GeneralConfig : IGeneralConfig
+    
+    public class GeneralConfigClass : IGeneralConfig
     {
         [JsonProperty("defaultUri")]
         public Uri DefaultUri { get; set; }
@@ -17,7 +18,7 @@ namespace RedditTtsBot.General.General_classes.Config
         [JsonProperty("defualtoutputPath")]
         public string DefualtOutputPath { get; set; }
 
-        public GeneralConfig(string defualtoutputPath, Uri defaultUri)
+        public GeneralConfigClass(string defualtoutputPath, Uri defaultUri)
         {
             DefaultUri = defaultUri;
             DefualtOutputPath = defualtoutputPath;
