@@ -2,6 +2,7 @@
 using RedditTtsBot.General;
 using Reddit;
 
+
 namespace RedditTtsBot.Reddit
 {
     public class RedditClass
@@ -9,12 +10,31 @@ namespace RedditTtsBot.Reddit
         public static void getpost()
         {
             var RedditConfig = ConfigProvider.GetRedditConfig();
-            var reddit = new RedditClient(appId:RedditConfig.AppId, refreshToken:RedditConfig.RefreshToken, appSecret:RedditConfig.ClientSecret);
+            var reddit = new RedditClient(appId: RedditConfig.AppId, refreshToken: RedditConfig.RefreshToken, appSecret: RedditConfig.ClientSecret);
+            var subreddit = reddit.Subreddit("AskReddit");
 
-            Console.WriteLine($"App Id: {RedditConfig.AppId}\nRefresh Token: {RedditConfig.RefreshToken}\nApp Secret: {RedditConfig.ClientSecret}");
-            //var askReddit = reddit.Subreddit("AskReddit").About();
-            //Console.WriteLine(askReddit);
+            #region
 
+
+            int postindex = GetIndex(0);
+
+
+            #endregion
+
+            int GetIndex(int postindex)
+            {
+                var post = subreddit.Posts.Hot[postindex];
+                try
+                {
+                    var x = post.Comments.Top[0];
+                    return postindex;
+                }
+                catch (Exception e)
+                {
+                    postindex++;
+                    return GetIndex(postindex);
+                }
+            }
 
         }
     }

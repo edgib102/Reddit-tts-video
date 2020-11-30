@@ -14,7 +14,7 @@ namespace RedditTtsBot
             ConfigProvider.GetGeneralConfig(); // checks and creates confing on startup
             ConfigProvider.GetRedditConfig(); // checks and creates confing on startup
             Console.WriteLine(string.Empty);
-           // var Options = BaseUi.ui();
+            var Options = BaseUi.ui();
             RedditUi.GetPost();
             
 

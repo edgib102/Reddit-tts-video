@@ -42,10 +42,11 @@ namespace RedditTtsBot.General
             try
             {
                 RConfig = JsonConvert.DeserializeObject<RedditConfig>(File.ReadAllText(redditConfigFile.FullName));
-
+                
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine($"the class had an Exception: {e}");
                 GenerateNewRedditConfig(RConfig);
             }
 

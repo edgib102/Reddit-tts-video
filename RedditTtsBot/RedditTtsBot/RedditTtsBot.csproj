@@ -18,4 +18,15 @@
     <PackageReference Include="Reddit" Version="1.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="generalconfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="redditconfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    
+  </ItemGroup>
+  
+
 </Project>

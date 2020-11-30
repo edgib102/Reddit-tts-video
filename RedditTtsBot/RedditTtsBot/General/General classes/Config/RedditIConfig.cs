@@ -22,11 +22,15 @@ namespace RedditTtsBot.General.General_classes.Config
         [JsonProperty("clientSecret")]
         public string ClientSecret { get; set; }
 
+        public RedditConfig() { }
+
         public RedditConfig(string appId, string refreshToken, string clientSecret)
         {
             AppId = appId;
             RefreshToken = refreshToken;
             ClientSecret = clientSecret;
         }
+
+
     }
 }
