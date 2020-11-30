@@ -41,16 +41,17 @@ namespace RedditTtsBot.Reddit
             int GetIndex(int postindex)
             {
                 var post = subreddit.Posts.Hot[postindex];
-                try
+
+                if(post.Comments.Top.Count != 0)
                 {
-                    var x = post.Comments.Top[0];
                     return postindex;
                 }
-                catch (Exception e)
+                else
                 {
                     postindex++;
                     return GetIndex(postindex);
                 }
+               
             }
 
             List<string> GetText(int index)
