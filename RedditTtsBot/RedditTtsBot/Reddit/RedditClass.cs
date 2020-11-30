@@ -15,7 +15,7 @@ namespace RedditTtsBot.Reddit
 
             #region
 
-
+            Console.WriteLine($"App Id: {RedditConfig.AppId}\nRefresh Token: {RedditConfig.RefreshToken}\nClient Secret: {RedditConfig.ClientSecret}");
             int postindex = GetIndex(0);
 
 
