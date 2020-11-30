@@ -34,8 +34,12 @@ namespace RedditTtsBot.Reddit
             Console.WriteLine("\nFinished getting post index");
 
             Console.WriteLine("\nGetting comments to list");
-            GetText(postindex);
+            List<string> comments = GetText(postindex);
             Console.WriteLine("\nFinished getting comments to list");
+
+            Console.WriteLine("\nWriting comments to file");
+            WriteToFile(comments);
+            Console.WriteLine("\nFinished writing comments to file");
             #endregion
 
             int GetIndex(int postindex)
@@ -73,6 +77,11 @@ namespace RedditTtsBot.Reddit
                    
                 }
                 return CommentText;
+            }
+
+            void WriteToFile(List<string> comments)
+            {
+                File.WriteAllLines(GeneralConfig.DefualtOutputPath + @"\TestTxt.txt", comments);
             }
         }
     }
