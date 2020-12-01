@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using RedditTtsBot.General;
 using RedditTtsBot.Reddit;
+using RedditTtsBot.Video;
 
 namespace RedditTtsBot
 {
@@ -13,21 +14,22 @@ namespace RedditTtsBot
         {
             Console.WriteLine("------------------------Program Start------------------------\n");
 
-            ConfigProvider.GetGeneralConfig();
-            ConfigProvider.GetRedditConfig();
-            // checks and creates confing on startup
+            Startup.startup();
 
             var generalconfig = ConfigProvider.GetGeneralConfig();
             Console.WriteLine(string.Empty);
+            List<List<DirectoryInfo>> ParentDirList = new List<List<DirectoryInfo>>();
+
             //var Options = BaseUi.ui();
 
             #region Create stuff
-            List<List<DirectoryInfo>> ParentDirList = new List<List<DirectoryInfo>>();
             ParentDirList.Add(CreateFolder.DirectoryCreate(generalconfig.DefualtOutputPath));
-            RedditClass.getpost(ParentDirList[0]);
+            //RedditClass.getpost(ParentDirList[0]);
             #endregion
 
-
+            #region Make video
+            CreateVideo.Createvideo(ParentDirList[0]);
+            #endregion
 
 
 

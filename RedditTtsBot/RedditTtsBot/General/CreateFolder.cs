@@ -11,19 +11,29 @@ namespace RedditTtsBot.General
         {
             List<DirectoryInfo> DirList = new List<DirectoryInfo>();
 
-            string basepathString = Path.Combine(basefolder, "SubFolder");
-            var MainDir = Directory.CreateDirectory(basepathString);
+            string SharedAssetPathString = Path.Combine(basefolder, "Shared Assets");
+            var SharedAssetDir = Directory.CreateDirectory(SharedAssetPathString);
+            DirList.Add(SharedAssetDir);
+
+            string VideoPathString = Path.Combine(basefolder, "TestFolder");
+            var MainDir = Directory.CreateDirectory(VideoPathString);
             DirList.Add(MainDir);
 
-            string pathString = Path.Combine(basepathString, "Text Files");
+            string pathString = Path.Combine(VideoPathString, "Text Files");
             var TxtDir = Directory.CreateDirectory(pathString);
             DirList.Add(TxtDir);
 
-            pathString = basepathString;
+            pathString = VideoPathString;
 
             pathString = Path.Combine(pathString, "Audio Files");
             var AudioDir = Directory.CreateDirectory(pathString);
             DirList.Add(AudioDir);
+
+            pathString = VideoPathString;
+
+            pathString = Path.Combine(pathString, "Output-Video-Files");
+            var OutputDir = Directory.CreateDirectory(pathString);
+            DirList.Add(OutputDir);
 
             return DirList;
         }

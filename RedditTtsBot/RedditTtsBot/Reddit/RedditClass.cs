@@ -11,7 +11,7 @@ namespace RedditTtsBot.Reddit
 {
     public class RedditClass
     {
-        public static void getpost(List<DirectoryInfo> DirList)
+        public static List<string> getpost(List<DirectoryInfo> DirList)
         {
             var RedditConfig = ConfigProvider.GetRedditConfig();
             var GeneralConfig = ConfigProvider.GetGeneralConfig();
@@ -36,6 +36,9 @@ namespace RedditTtsBot.Reddit
             Console.WriteLine("\nWriting comments to file");
             WriteToFile(comments);
             Console.WriteLine("\nFinished writing comments to file");
+
+            Console.WriteLine("\nFinished reddit section");
+            return comments;
             #endregion
 
             int GetIndex(int postindex)
